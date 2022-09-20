@@ -20,7 +20,11 @@ const InteractionBox = ({stateNo,setStateNo,setBoolValue,setYou,game,hand,boolVa
         setStateNo(0);
       }
       function listLog(logArr) {
-        logArr.reverse();
+        console.log(logArr)
+        if (logArr.length ==0) {
+            return (<></>)
+        }
+
         return (
           <div className="overflow-auto " style={{overflowY:"auto"}} >
             {logArr.map((item, k) => {
@@ -80,6 +84,7 @@ const InteractionBox = ({stateNo,setStateNo,setBoolValue,setYou,game,hand,boolVa
         }
         fun2()
     }, [stateNo,boolValue]);
+    
     return (
         <div className="p-4 col-3 d-flex flex-column justify-center flex-wrap">
             <span className="text-secondary col-12">Draw</span>
@@ -87,7 +92,7 @@ const InteractionBox = ({stateNo,setStateNo,setBoolValue,setYou,game,hand,boolVa
             <span className="d-block my-md-2 " style={{ fontSize: 20 }}>
               {boolValue?"": statusMessage(stateNo)}
             </span>
-            <span className="log " style={{overflow:"auto",height:220,scrollbarWidth:0,background:"rgb(230,230,230)",borderRadius:20 }} >{listLog(logArr)}</span>
+            {logArr.length ===0 ? <></> :<span className="log " style={{overflow:"auto",height:220,scrollbarWidth:0,background:"rgb(230,230,230)",borderRadius:20 }} >{listLog(logArr)}</span>}
             <button
               name="formBtn"
               id="playbtn"
